@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Overlays Within Street View</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        margin-left: -100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input type="button" value="Toggle Street View" onclick="toggleStreetView();"></input>
+    </div>
+    <div id="map"></div>
+    <script>
+      var panorama;
+
+      function initMap() {
+        var astorPlace = {lat: 52.081189, lng: 4.320316};
+
+        // Set up the map
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: astorPlace,
+          zoom: 18,
+          streetViewControl: false
+        });
+
+        // Set up the markers on the map
+        var cafeMarker = new google.maps.Marker({
+            position: {lat: 52.081244, lng: 4.320104},
+            map: map,
+            icon: 'me2.gif',
+            maxWidth: 20,
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        var bankMarker = new google.maps.Marker({
+            position: {lat: 52.080865, lng: 4.320584},
+            map: map,
+            icon: 'me.gif',
+            title: 'Low Roll Singles: Roll your body in a circular shape. Perform rotational movements by supporting yourself with your palms. Avoid exposing facial features and modifying joint configurations for maximum efficiency.'
+        });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 52.080519, lng: 4.320068},
+            map: map,
+            icon: 'me4.gif',
+            maxWidth: 20,
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 52.079532, lng: 4.320140},
+            map: map,
+            icon: 'me2.gif',
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 52.082219, lng: 4.315401},
+            map: map,
+            icon: 'me.gif',
+            title: 'Low Roll Singles: Roll your body in a circular shape. Perform rotational movements by supporting yourself with your palms. Avoid exposing facial features and modifying joint configurations for maximum efficiency.'
+        });
+
+        // var busMarker = new google.maps.Marker({
+        //     position: {lat: 52.081734, lng: 4.318739},
+        //     map: map,
+        //     icon: 'me2.gif',
+        //     title: 'Bus Stop'
+        // });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 45.567923, lng: 73.879766},
+            map: map,
+            icon: 'me2.gif',
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 39.859696, lng: 116.473068},
+            map: map,
+            icon: 'me2.gif',
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 38.871661, lng: -77.066420},
+            map: map,
+            icon: 'me2.gif',
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        var busMarker = new google.maps.Marker({
+            position: {lat: 68.914054, lng: 101.295076},
+            map: map,
+            icon: 'me2.gif',
+            title: 'High Craw Partners: Partner 1 position palms, knees and feet on ground. This posture requires 6 points of contact. Partner 2 overlay Partner 1, forming a cross-torso composition. Partner 1 start sliding over the ground, using points of contact. Partner 2 maintain joint configurations for maximum efficiency.'
+        });
+
+        
+
+
+        // We get the map's default panorama and set up some defaults.
+        // Note that we don't yet set it visible.
+        panorama = map.getStreetView();
+        panorama.setPosition(astorPlace);
+        panorama.setPov(/** @type {google.maps.StreetViewPov} */({
+          heading: 265,
+          pitch: 0
+        }));
+      }
+
+      function toggleStreetView() {
+        var toggle = panorama.getVisible();
+        if (toggle == false) {
+          panorama.setVisible(true);
+        } else {
+          panorama.setVisible(false);
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuXuaRs5mzqJ1vysLFvX7jaOfzoAovREM&callback=initMap">
+    </script>
+  </body>
+</html>
